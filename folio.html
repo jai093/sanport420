@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Magical Portfolio</title>
+    <script src="https://kit.fontawesome.com/8e208c522a.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #f8f9fa;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #f8f9fa;
+            color: #333;
+            border-color: #fff;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 960px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #home {
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 100px 20px;
+        }
+
+        h1, h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .hero-image, .about-image {
+            width: 40%;
+            max-width: 300px;
+            height: 20%;
+            animation: fadeIn 1s ease-in;
+            border-radius: 100px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .skill {
+            width: 18%;
+            min-width: 150px;
+            background: linear-gradient(145deg, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .achievement-frame, .project-frame {
+            background: #1e3c72;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .achievement-frame img, .project-frame img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .achievement-frame:hover, .project-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-view {
+            padding: 10px 20px;
+            background: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-view:hover {
+            background: #2575fc;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            z-index: 1000;
+        }
+
+        footer a {
+            color: #f8f9fa;
+            margin: 0 15px;
+            font-size: 1.5rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        footer a:hover {
+            color: #2575fc;
+            transform: scale(1.2);
+        }
+        form {  
+            display: flex;  
+            flex-direction: column;  
+            align-items: center;  
+        }  
+
+        form input, form textarea {  
+            width: 80%;  
+            margin: 10px 0;  
+            padding: 15px;  
+            font-size: 1rem;  
+            border: none;  
+            border-radius: 10px;  
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);  
+        }  
+
+ 
+
+        form button {  
+            padding: 10px 20px;  
+            background: #6a11cb;  
+            color: white;  
+            border: none;  
+            border-radius: 30px;  
+            cursor: pointer;  
+            font-size: 1rem;  
+            transition: background 0.3s;  
+        }  
+
+        form button:hover {  
+            background: #2575fc;  
+        }  
+
+        /* Animation on scroll */  
+        .hidden {  
+            opacity: 0;  
+            transform: translateY(50px);  
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;  
+        }  
+
+        /* Animation on scroll */
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .footerNav {
+            margin: 30px 0;
+            }
+            .footerNav ul{
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            }
+           .footerNav ul li a{
+            color: white;
+            margin: 20px;
+            text-decoration: none;
+            font-size: 1.3em;
+            opacity: 0.1;
+            transition: 0.5s;
+            }
+            .footerNav ul li a:hover{
+            opacity: 1;
+            color:rgb(239, 0, 239);
+           }
+            .footerBottom{
+            background-color:rgb(62, 60, 60);
+            padding: 20px;
+            text-align: center;
+            }
+            .footerBottom p{
+            color: white;
+           }
+           .designer{
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            margin: 0px 5px;
+           }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h1>Welcome to My Portfolio</h1>
+        <img src="pic.png" alt="Your Name" class="hero-image" />
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <img src="about1.jpg" alt="About Image" class="about-image">
+            <p>Hello! 👋 I’m Sanjay, a passionate Web Developer, Designer,Software Engineer with a knack for turning ideas into reality. With a strong foundation in front-end development, UI/UX design, and responsive web design, I strive to create experiences that are not only functional but also captivating.
+
+            I thrive on solving challenges and bringing innovative solutions to life, whether it's crafting seamless user interfaces, developing robust applications, or collaborating on exciting projects. My journey has been shaped by curiosity, creativity, and a drive to continuously learn and grow.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills-container">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">Java Script</div>
+            <div class="skill">Python</div>
+            <div class="skill">MongoDB</div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2>Achievements</h2>
+        <div class="achievement-frame">
+            <img src="info1.jpg" alt="Achievement 1">
+            <h5>Infosys Spring board</h5>
+            <p>Python Foundation Certification</p>
+        </div>
+        <div class="achievement-frame">
+            <img src="info2.jpg" alt="Achievement 2">
+            <h5>Infosys Spring board</h5>
+            <p>Open AI GPT models</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project-frame">
+            <img src="chess.jpeg" alt="Project 1">
+            <h5>Multiplayer-Sever-Games</h5>
+            <a href="https://github.com/jai093/multiplayer-game-server.git" class="btn-view">View Project</a>
+        </div>
+        <div class="project-frame">
+            <img src="social.jpg" alt="Project 2">
+            <h5>Social-Media application</h5>
+            <a href="https://github.com/jai093/socialMedia.git" class="btn-view">View Project</a>
+        </div>
+        <div class="project-frame">
+            <img src="e-commerce.png" alt="Project 3">
+            <h5>E-commerce website</h5>
+            <a href="https://github.com/jai093/E-Commerce.git" class="btn-view">View Project</a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <input type="email" placeholder="Your Email" required />
+            <textarea placeholder="Your Feedback" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="fc">
+            <div class="si">
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+
+        </div>
+        </div>
+        <div class="footerNav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">My Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footerBottom">
+            <p>Copyright © 2023; Designed for<span class="designer">Sanjay</span>
+            </p>
+        </div>
+    </div>
+</footer>  
+
+    <script>
+        // Animation on scroll
+        const sections = document.querySelectorAll("section");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                } else {
+                    entry.target.classList.remove("visible");
+                }
+            });
+        });
+
+        sections.forEach((section) => {
+            section.classList.add("hidden");
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
